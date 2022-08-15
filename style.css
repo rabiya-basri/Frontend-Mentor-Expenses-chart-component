@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Roboto:wght@100;300&display=swap');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #fee2e2;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    margin: 50px auto;
+    min-width: 25rem;
+}
+.balance-container{
+    min-height: 5rem;
+    display: flex;
+    color: #fff;
+    background-color: hsl(10, 79%, 65%);
+    border-radius: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.balance-header{
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+.logo{
+    max-width: 45px;
+    margin-right: 1.5rem;
+}
+.spending-container{
+    background-color: #fff;
+    border-radius: 1rem;
+}
+.total{
+    min-height: 6rem;
+    display: flex;
+    justify-content: space-between;
+}
+.current-month{
+    margin: 1.5rem;
+}
+.last-month{
+    margin: 2.5rem;
+}
+.text{
+    color: darkgray;
+}
+.value{
+    color: hsl(25, 47%, 15%)
+    ;
+}
+.js-plotly-plot .plotly .main-svg{
+    background: unset !important;
+}
+@media(max-width:768px){
+    .container{
+        width: 100%;
+    }
+}
+

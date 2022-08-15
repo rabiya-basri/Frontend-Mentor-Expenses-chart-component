@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frontend Mentor | Expenses chart component</title>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="balance-container">
+        <div class="balance-header">
+          <p>My balance</p>
+          <h1>$921.48</h1>
+        </div>
+        <img src="./images/logo.svg" alt="logo" class="logo" />
+      </div>
+
+      <div class="spending-container">
+        <div id="myData">
+          <hr />
+          <div class="total">
+            <div class="current-month">
+              <p class="text">Total this month</p>
+              <h1 class="value">$478.33</h1>
+            </div>
+
+            <div class="last-month">
+              <h4 class="value">+2.4%</h4>
+              <p class="text">from last month</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          fetch("data.json")
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (data) {
+              appendData(data);
+            })
+            .catch(function (err) {
+              console.log("error: " + err);
+            });
+          function appendData(data) {
+            let mainContainer = document.getElementById("myData");
+            let xaxis = [];
+            let amount = [];
+
+            data.forEach((dataElement) => {
+              xaxis.push(dataElement.day);
+              amount.push(dataElement.amount);
+            });
+            console.log(xaxis, amount);
+            var data = [
+              {
+                x: xaxis,
+                y: amount,
+                marker: {
+                  color: [
+                    "#ec755d",
+                    "#ec755d",
+                    "#75b5bd",
+                    "#fbc4b9",
+                    "#ec755d",
+                    "#ec755d",
+                    "#ec755d",
+                  ],
+                },
+                type: "bar",
+              },
+            ];
+
+            var layout = {
+              width: 400,
+              height: 270,
+              title: {
+                text: "Spending - Last 7 days",
+                font: {
+                  family: "",
+                  color: "hsl(25, 47%, 15%)",
+                  size: "21",
+                  x: 1.05,
+                },
+              },
+              xaxis: { fixedrange: true },
+              yaxis: {
+                showgrid: false,
+                visible: false,
+                zeroline: false,
+                fixedrange: true 
+              },
+            };
+            Plotly.newPlot("myData", data, layout);
+          }
+        </script>
+      </div>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="https://github.com/rabiya-basri">Rabiya Basri</a>.
+      </div>
+    </div>
+  </body>
+</html>
